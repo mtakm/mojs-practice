@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import MojsExample from "./MojsExample";
+import Button from "./Button";
+import "./styles.css";
 
-function App() {
+export default function App() {
+  const [slowMo, setSlowMo] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <MojsExample duration={slowMo ? 6000 : 1500} />
+      <footer>
+        <p>Control from outside using props</p>
+        <Button
+          onClick={() => {
+            setSlowMo(!slowMo);
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          {slowMo ? "Default Mo" : "Slow Mo"}
+        </Button>
+      </footer>
+    </>
   );
 }
-
-export default App;
